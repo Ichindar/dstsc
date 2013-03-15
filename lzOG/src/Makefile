@@ -1,28 +1,30 @@
-CC=g++
+CC= g++
 CFLAGS= -O3 
 VPATH= ../../SAIS-SK/src
+OBJECTS= main.o sk-sain.o gt-alloc.o mmap.o fileopen.o lzOG.o 
+
 default: test
 
-sk-sain: sk-sain.c
+sk-sain.o: sk-sain.c
 	$(CC) $(CFLAGS) -c $< -o sk-sain.o
 
-gt-alloc: gt-alloc.c
+gt-alloc.o: gt-alloc.c
 	$(CC) $(CFLAGS) -c $< -o gt-alloc.o
 
-mmap: mmap.c
+mmap.o: mmap.c
 	$(CC) $(CFLAGS) -c $< -o mmap.o
 
-fileopen: fileopen.c
+fileopen.o: fileopen.c
 	$(CC) $(CFLAGS) -c $< -o fileopen.o
 
-lzOG: lzOG.cpp
+lzOG.o: lzOG.cpp
 	$(CC) $(CFLAGS) -c $< -o lzOG.o
 
-main: main.cpp
+main.o: main.cpp
 	$(CC) $(CFLAGS) -c $< -o main.o
 
-test: main sk-sain gt-alloc mmap fileopen lzOG
-	$(CC) $(CFLAGS) main.o sk-sain.o gt-alloc.o mmap.o fileopen.o lzOG.o -o lz_factor_file
+test: $(OBJECTS) 
+	$(CC) $(CFLAGS) $(OBJECTS) -o lz_factor_file
 
 clean:
-	rm *.o
+	rm $(OBJECTS)
