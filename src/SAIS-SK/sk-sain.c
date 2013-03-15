@@ -77,26 +77,26 @@ static GtSainseq *gt_sainseq_new_from_plainseq(const GtUchar *plainseq,
                                                unsigned long len)
 {
   const GtUchar *cptr;
-  GtSainseq *sainseq = gt_malloc(sizeof *sainseq);
+  GtSainseq *sainseq = (GtSainseq*)gt_malloc(sizeof *sainseq);
 
   sainseq->seqtype = GT_SAIN_PLAINSEQ;
   sainseq->seq.plainseq = plainseq;
   sainseq->totallength = len;
   sainseq->numofchars = UCHAR_MAX+1;
-  sainseq->bucketsize = gt_calloc((size_t) sainseq->numofchars,
+  sainseq->bucketsize = (long unsigned int*)gt_calloc((size_t) sainseq->numofchars,
                                   sizeof (*sainseq->bucketsize));
-  sainseq->bucketfillptr = gt_malloc(sizeof (*sainseq->bucketfillptr) *
+  sainseq->bucketfillptr = (long unsigned int*)gt_malloc(sizeof (*sainseq->bucketfillptr) *
                                      sainseq->numofchars);
   if (gt_sain_decideforfastmethod(len+1,len))
   {
-    sainseq->roundtable = gt_malloc(sizeof (*sainseq->roundtable) *
+    sainseq->roundtable = (long unsigned int*)gt_malloc(sizeof (*sainseq->roundtable) *
                                     (size_t) GT_MULT2(sainseq->numofchars));
   } else
   {
     sainseq->roundtable = NULL;
   }
   sainseq->sstarfirstcharcount
-    = gt_calloc((size_t) sainseq->numofchars,
+    = (long unsigned int*)gt_calloc((size_t) sainseq->numofchars,
                 sizeof (*sainseq->sstarfirstcharcount));
   sainseq->bucketfillptrpoints2suftab = false;
   sainseq->bucketsizepoints2suftab = false;
@@ -116,7 +116,7 @@ static GtSainseq *gt_sainseq_new_from_array(unsigned long *arr,
                                             unsigned long suftabentries)
 {
   unsigned long charidx, *cptr;
-  GtSainseq *sainseq = gt_malloc(sizeof *sainseq);
+  GtSainseq *sainseq = (GtSainseq *)gt_malloc(sizeof *sainseq);
 
   sainseq->seqtype = GT_SAIN_INTSEQ;
   sainseq->seq.array = arr;
@@ -134,7 +134,7 @@ static GtSainseq *gt_sainseq_new_from_array(unsigned long *arr,
     printf("bucketsize requires %lu entries and only %lu are left\n",
            numofchars,suftabentries - firstusable);
     sainseq->bucketsizepoints2suftab = false;
-    sainseq->bucketsize = gt_malloc(sizeof (*sainseq->bucketsize) * numofchars);
+    sainseq->bucketsize = (long unsigned int*)gt_malloc(sizeof (*sainseq->bucketsize) * numofchars);
   }
   if (suftabentries - firstusable >= GT_MULT2(numofchars))
   {
@@ -148,7 +148,7 @@ static GtSainseq *gt_sainseq_new_from_array(unsigned long *arr,
     /*printf("bucketfillptr requires %lu entries and only %lu are left\n",
            numofchars,suftabentries - firstusable);*/
     sainseq->bucketfillptrpoints2suftab = false;
-    sainseq->bucketfillptr = gt_malloc(sizeof (*sainseq->bucketfillptr) *
+    sainseq->bucketfillptr = (long unsigned int*)gt_malloc(sizeof (*sainseq->bucketfillptr) *
                                        numofchars);
   }
   if (gt_sain_decideforfastmethod(len+1,len))
@@ -163,7 +163,7 @@ static GtSainseq *gt_sainseq_new_from_array(unsigned long *arr,
     } else
     {
       sainseq->roundtablepoints2suftab = false;
-      sainseq->roundtable = gt_malloc(sizeof (*sainseq->roundtable) *
+      sainseq->roundtable = (long unsigned int*)gt_malloc(sizeof (*sainseq->roundtable) *
                                       GT_MULT2(numofchars));
     }
   } else
@@ -254,7 +254,7 @@ static GtSainbuffer *gt_sainbuffer_new(unsigned long *suftab,
 {
   if (numofchars <= UCHAR_MAX+1)
   {
-    GtSainbuffer *buf = gt_malloc(sizeof (*buf));
+    GtSainbuffer *buf = (GtSainbuffer*)gt_malloc(sizeof (*buf));
 
     buf->size = sizeof (*buf);
     buf->fillptr = fillptr;
@@ -265,9 +265,9 @@ static GtSainbuffer *gt_sainbuffer_new(unsigned long *suftab,
     buf->numofchars = numofchars;
     gt_assert(buf->buf_size <= UINT16_MAX);
     buf->cachesize = numofchars << buf->log_bufsize;
-    buf->values = gt_malloc(sizeof (*buf->values) * buf->cachesize);
+    buf->values = (long unsigned int*)gt_malloc(sizeof (*buf->values) * buf->cachesize);
     buf->size += sizeof (*buf->values) * buf->cachesize;
-    buf->nextidx = gt_calloc((size_t) numofchars,sizeof (*buf->nextidx));
+    buf->nextidx = (uint16_t*)gt_calloc((size_t) numofchars,sizeof (*buf->nextidx));
     buf->size += sizeof (*buf->nextidx) * numofchars;
     return buf;
   } else
@@ -1929,7 +1929,7 @@ unsigned long *gt_sain_plain_sortsuffixes(const GtUchar *plainseq,
   GtSainseq *sainseq;
 
   suftabentries = len+1;
-  suftab = gt_calloc((size_t) suftabentries,sizeof (*suftab));
+  suftab = (long unsigned int*)gt_calloc((size_t) suftabentries,sizeof (*suftab));
   sainseq = gt_sainseq_new_from_plainseq(plainseq,len);
   gt_sain_rec_sortsuffixes(0,
                            sainseq,
