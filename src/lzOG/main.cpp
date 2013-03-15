@@ -28,7 +28,7 @@ int main(int argc, const char **argv)
        exit(EXIT_FAILURE);
        }
 
-   lz_factorise(numofbytes, argv[1], offsets, lengths);
+   lz_factorise_file(argv[1], offsets, lengths);
    
    for(int i = 0; i < offsets.size() - 1; i++) // Print the lz factors
        if (lengths[i] != 0)

@@ -52,19 +52,29 @@ void sop(LONGINT i, LONGINT l, LONGINT j, LONGINT *lps, LONGINT *prev_occurance,
 	}
 }
 
-void lz_factorise(LONGINT bytenum, const char * filename, vector<LONGINT> &offsets, vector<LONGINT> &lengths)
+void lz_factorise_file(const char * filename, vector<LONGINT> &offsets, vector<LONGINT> &lengths)
+{
+/* 
+Procedure loads and factorises 'filename' file. 
+Returns two vectors one with the offsets and one with the lengths
+*/
+
+    GtUchar *filecontents; // File contents will be stored here
+    LONGINT numofbytes;
+    filecontents = (GtUchar*)creatememorymap(filename, &numofbytes);
+    lz_factorise(numofbytes, filecontents, offsets, lengths);
+    deletememorymap(filecontents, numofbytes);
+}
+
+void lz_factorise(LONGINT bytenum, const unsigned char * filecontents, vector<LONGINT> &offsets, vector<LONGINT> &lengths)
 { // procedure accepts suffix array of byte array 'contents' of size 'bytenum'
 
-  // Step 0: Load file
+  // Step 1: Compute Suffix Array
 
-   GtUchar *filecontents; // File contents will be stored here
    LONGINT *sa;           // Suffix array will be stored here
-   
-   filecontents = (GtUchar*)creatememorymap(filename, &bytenum);
    sa = gt_sain_plain_sortsuffixes(filecontents, bytenum, false);
 
-
-  // Step 1: Compute phi array
+  // Step 2: Compute phi array
 
   LONGINT *phi = new LONGINT[bytenum];
   LONGINT *previous_occurance = new LONGINT[bytenum];
@@ -76,7 +86,7 @@ void lz_factorise(LONGINT bytenum, const char * filename, vector<LONGINT> &offse
   for(int i=1; i<bytenum; i++)
      phi[sa[i]] = sa[i-1];
 
-  // Step 2: Calculate Longest Previous Substrings (LPS) and Previous Occurances
+  // Step 3: Calculate Longest Previous Substrings (LPS) and Previous Occurances
 
   for(int i=0; i<bytenum; ++i)
       sa[i] = -1;  // To save space, we reuse the SA array to store LPS values
@@ -97,7 +107,7 @@ void lz_factorise(LONGINT bytenum, const char * filename, vector<LONGINT> &offse
 	  l--;
       }
 
-  // Step 3: Perform LZ factorisation using LPS and Previous Occurances
+  // Step 4: Perform LZ factorisation using LPS and Previous Occurances
 
   int i = 1;
 
@@ -123,7 +133,6 @@ void lz_factorise(LONGINT bytenum, const char * filename, vector<LONGINT> &offse
 
   // Finalisation: Deallocate memory
   gt_free(sa);
-  deletememorymap(filecontents, bytenum);
   delete[] phi;
   delete[] previous_occurance;
 }
