@@ -39,6 +39,6 @@ int simplefileOpen(const char *filename,unsigned long *numofbytes)
     fprintf(stderr,"Cannot access status of file: %s\n",filename);
     return -2;
   }
-  *numofbytes = (long long)buf.st_size; /* store file size in address of numofbytes */
+  *numofbytes = (unsigned long)buf.st_size; /* store file size in address of numofbytes */
   return fd;
 }
