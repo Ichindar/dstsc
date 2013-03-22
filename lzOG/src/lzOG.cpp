@@ -93,7 +93,7 @@ void lz_factorise(LONGINT bytenum, const unsigned char * filecontents, vector<LO
   
   int maximumFactorLength = 0;
   int l = 0;
-  int j;
+  LONGINT j;
   for(int i=0; i<bytenum; i++)
       {  
       j = phi[i];  
