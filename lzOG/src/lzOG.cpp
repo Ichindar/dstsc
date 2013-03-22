@@ -91,7 +91,6 @@ void lz_factorise(LONGINT bytenum, const unsigned char * filecontents, vector<LO
   for(int i=0; i<bytenum; ++i)
       sa[i] = -1;  // To save space, we reuse the SA array to store LPS values
   
-  int maximumFactorLength = 0;
   int l = 0;
   LONGINT j;
   for(int i=0; i<bytenum; i++)
