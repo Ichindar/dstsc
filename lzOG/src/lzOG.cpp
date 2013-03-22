@@ -109,7 +109,7 @@ void lz_factorise(LONGINT bytenum, const unsigned char * filecontents, vector<LO
 
   // Step 4: Perform LZ factorisation using LPS and Previous Occurances
 
-  int i = 1;
+  LONGINT i = 1;
 
   offsets.push_back(filecontents[0]); lengths.push_back(0); // adding first byte
   
