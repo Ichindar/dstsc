@@ -18,7 +18,7 @@ int main(int argc, const char **argv)
 {
 
 
-   LONGINT numofbytes, *suftab;
+   LONGINT *suftab;
    vector<LONGINT> offsets; // Store the factor offsets
    vector<LONGINT> lengths; // Store the length offsets
 
