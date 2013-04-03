@@ -1,4 +1,4 @@
-CC ?= gcc
+CC = g++
 CFLAGS=-Werror -Wall -O3
 OBJ=sk-sain.o\
     mmap.o\

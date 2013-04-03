@@ -13,6 +13,10 @@
   WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
   ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+  Additional credits: 
+  -- Angelos Molfetas (2013) Added explicit type casting for void 
+     pointers so code compiles with C++ compilier.
 */
 
 #include <stdio.h>
@@ -62,7 +66,7 @@
 #define GT_INITBITTAB(TAB,NUMOFBITS)\
         {\
           size_t tabsize = GT_NUMOFINTSFORBITS(NUMOFBITS);\
-          TAB = gt_malloc(sizeof (GtBitsequence) * tabsize);\
+          TAB = (GtBitsequence*) gt_malloc(sizeof (GtBitsequence) * tabsize);\
           (void) memset(TAB,0,sizeof (GtBitsequence) * tabsize);\
         }
 
@@ -102,7 +106,8 @@ static void gt_suftab_bk_suffixorder(const GtUchar *sequence,
                                      unsigned int numofranges)
 {
   unsigned int rangeidx;
-  unsigned long idx, *nexttab = gt_calloc((size_t) numofchars,sizeof(*nexttab));
+  unsigned long idx;
+  unsigned long *nexttab = (unsigned long*) gt_calloc((size_t) numofchars,sizeof(*nexttab));
 
   for (rangeidx = 0; rangeidx < numofranges; rangeidx++)
   {
@@ -142,7 +147,7 @@ void gt_suftab_lightweightcheck(const GtUchar *sequence,
   GtRangewithchar *rangestore;
 
   GT_INITBITTAB(startposoccurs,totallength+1);
-  rangestore = gt_malloc(sizeof(*rangestore) * numofchars);
+  rangestore = (GtRangewithchar *) gt_malloc(sizeof(*rangestore) * numofchars);
   for (idx = 0; idx < totallength; idx++)
   {
     unsigned long position = suftab[idx];

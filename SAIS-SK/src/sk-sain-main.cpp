@@ -13,6 +13,10 @@
   WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
   ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+  Additional credits: 
+  -- Angelos Molfetas (2013) Added explicit type casting for void 
+     pointers so code compiles with C++ compilier.
 */
 
 #include <stdlib.h>
@@ -33,7 +37,7 @@ int main(int argc,const char **argv)
     fprintf(stderr,"Usage: %s <inputfile>\n",argv[0]);
     exit(EXIT_FAILURE);
   }
-  filecontents = creatememorymap(argv[1],&numofbytes);
+  filecontents = (GtUchar *) creatememorymap(argv[1],&numofbytes);
   suftab = gt_sain_plain_sortsuffixes(filecontents,numofbytes,false);
   gt_suftab_lightweightcheck(filecontents,numofbytes,suftab);
   gt_free(suftab);
