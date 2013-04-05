@@ -1810,12 +1810,12 @@ static void gt_sain_rec_sortsuffixes(unsigned int level,
   unsigned long countSstartype;
 
   countSstartype = gt_sain_insertSstarsuffixes(sainseq,suftab);
-  fprintf(stderr,"level %u: sort sequence of length %lu over "
-                       "%lu symbols (%.2f), ",
-          level,sainseq->totallength,sainseq->numofchars,
-          (double) sainseq->numofchars/sainseq->totallength);
-  fprintf(stderr,"Sstar-type: %lu (%.2f)\n",countSstartype,
-                 (double) countSstartype/sainseq->totallength);
+  //fprintf(stderr,"level %u: sort sequence of length %lu over "
+  //                     "%lu symbols (%.2f), ",
+  //        level,sainseq->totallength,sainseq->numofchars,
+  //        (double) sainseq->numofchars/sainseq->totallength);
+  //fprintf(stderr,"Sstar-type: %lu (%.2f)\n",countSstartype,
+  //               (double) countSstartype/sainseq->totallength);
   if (countSstartype > 0)
   {
     unsigned long numberofnames;

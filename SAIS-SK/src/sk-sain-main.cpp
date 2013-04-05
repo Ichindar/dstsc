@@ -40,6 +40,12 @@ int main(int argc,const char **argv)
   filecontents = (GtUchar *) creatememorymap(argv[1],&numofbytes);
   suftab = gt_sain_plain_sortsuffixes(filecontents,numofbytes,false);
   gt_suftab_lightweightcheck(filecontents,numofbytes,suftab);
+  printf("[");
+  for(int i = 0; i < numofbytes-1; i++)
+  {
+  	printf("%lu, ", suftab[i]);
+  }
+  printf("%lu]\n", suftab[numofbytes-1]);
   gt_free(suftab);
   deletememorymap(filecontents,numofbytes);
   exit(EXIT_SUCCESS);
