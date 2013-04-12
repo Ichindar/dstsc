@@ -39,7 +39,7 @@ The Suffix Array for string "ABCAB" is these starting offsets, that is:
 
 ## Implementation details
 
-This implementation, SAIS_SK, is by Stefan Kurtz and uses the induction sorting. Based on the ideas in Yuta Mori implementation (http://code.google.com/p/libdivsufsort/).
+This implementation, SAIS_SK, is by Stefan Kurtz and uses the induction sorting algorithm (Nong, Zhang and Chan, 2011). Based on the ideas in Yuta Mori's implementation (http://code.google.com/p/libdivsufsort/).
 
 ## Usage instructions
 
@@ -98,3 +98,5 @@ References
   Enno Ohlebusch and Simon Cog (2011). Lempel-Ziv Factorization Revisited.
   Combinatorial Pattern Matching 2011 (CPM 2011). Lecture Notes for Computer Science.
   Springer Berlin Heidelberg. Volume 6661. pp 15-26.
+
+  Ge Nong, Sem Zhang and Wai Hong Chan (2011). Two Efficient Algorithms for Linear Suffix Array Construction. _IEEE Transactions on Computers_. 60(10). pp 1471 - 1484.
