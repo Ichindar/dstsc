@@ -50,7 +50,8 @@ The _gt_sain_plain_sortsuffixes_ function can be used to return a pointer to an 
 
 An example illustrating how to use it can be seen in example file [sk-sain-main.cpp](SAIS-SK/src/sk-sain-main.cpp). A [sample make file](SAIS-SK/src/Makefile) showing the necessary compilation and linkages is also provided.  
 
-### Lempel-Ziv factorisor
+Lempel-Ziv factorisor
+---------------------
 
 ## Description 
 
