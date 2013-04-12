@@ -1,7 +1,8 @@
 /*
 ------------------------------------------------------------------
  Description: Simple program illustrating the use of the lzOG
-              Lempel_Ziv factorisation library to factorise a file
+              Lempel_Ziv factorisation library to factorise a
+	      string.
  Author: Angelos Molfetas (2013)
  Copyright: The University of Melbourne (2013)
  Licence: BSD licence, see attached LICENCE file
@@ -22,13 +23,9 @@ int main(int argc, const char **argv)
    vector<LONGINT> offsets; // Store the factor offsets
    vector<LONGINT> lengths; // Store the length offsets
 
-   if (argc != 2) // Validate input
-       {
-       fprintf(stderr,"Usage: %s <inputfile>\n",argv[0]);
-       exit(EXIT_FAILURE);
-       }
+   char* name = "123451234512345";
 
-   lz_factorise_file(argv[1], offsets, lengths);
+   lz_factorise(16, name, offsets, lengths);
    
    for(int i = 0; i < offsets.size() - 1; i++) // Print the lz factors
        if (lengths[i] != 0)
