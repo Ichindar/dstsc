@@ -1,10 +1,7 @@
 DSTSC - Data Structures and related algorithms
 ==============================================
 
-C/C++ implementations.
-
-DSTSC Data Structures and related algorithms
-============================================
+C/C++ implementations for data structures and related algorithms.
 
 Contents
 --------
