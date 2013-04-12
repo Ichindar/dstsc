@@ -45,7 +45,15 @@ This implementation, SAIS_SK, is by Stefan Kurtz and uses the induction sorting.
 
 The _gt_sain_plain_sortsuffixes_ function can be used to return a pointer to an integer array containing the offsets of the sorted suffixes. 
 
-An example illustrating how to use it can be seen in example file [sk-sain-main.cpp](SAIS-SK/src/sk-sain-main.cpp). A [sample make file](SAIS-SK/src/Makefile) showing the necessary compilation and linkages is also provided.  
+An example illustrating how to use it can be seen in example file [sk-sain-main.cpp](SAIS-SK/src/sk-sain-main.cpp). A [sample make file](SAIS-SK/src/Makefile) showing the necessary compilation and linkages is also provided.
+
+``` bash
+$ cd /tmp
+$ git clone git@github.com:Ichindar/dstsc.git
+$ cd dstsc/SAIS-SK/src/
+$ make
+$ ./sk-sain.x (some file)
+```
 
 Lempel-Ziv factorisor
 ---------------------
@@ -75,6 +83,14 @@ The _lz_factorise_file_ procedure can be used generate two vector arrays contain
 The _lz_factorise_ procedure can be used to generate two vector arrays containg the lz factorisation of unsigned char array. An [example](lzOG/src/main2.cpp) illustrating how to use this functon has been provided.
 
 A [sample make file](lzOG/Makefile) has been provided showing the necessary compilation and linkage options required. 
+
+``` bash
+$ cd /tmp
+$ git clone git@github.com:Ichindar/dstsc.git
+$ cd dsts/lzOG/
+$ make
+$ bin/lz_factor src/hello
+```
 
 References
 ---------- 
