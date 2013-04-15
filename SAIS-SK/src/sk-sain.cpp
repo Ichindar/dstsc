@@ -131,8 +131,8 @@ static GtSainseq *gt_sainseq_new_from_array(unsigned long *arr,
     sainseq->bucketsizepoints2suftab = true;
   } else
   {
-    printf("bucketsize requires %lu entries and only %lu are left\n",
-           numofchars,suftabentries - firstusable);
+      /*printf("bucketsize requires %lu entries and only %lu are left\n",
+	numofchars,suftabentries - firstusable);*/
     sainseq->bucketsizepoints2suftab = false;
     sainseq->bucketsize = (long unsigned int*)gt_malloc(sizeof (*sainseq->bucketsize) * numofchars);
   }
@@ -192,7 +192,7 @@ static void gt_sainseq_delete(GtSainseq *sainseq)
       gt_free(sainseq->bucketfillptr);
     }
     if (!sainseq->bucketsizepoints2suftab)
-    {
+{
       gt_free(sainseq->bucketsize);
     }
     if (!sainseq->roundtablepoints2suftab)
