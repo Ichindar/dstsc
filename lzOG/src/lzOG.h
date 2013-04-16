@@ -31,4 +31,5 @@ typedef long unsigned int LONGINT;
 
 void sop(LONGINT i, LONGINT l, LONGINT j, LONGINT *lps, LONGINT *prev_occurance, int null_value);
 void lz_factorise(LONGINT bytenum, const unsigned char * filecontents, vector<LONGINT> &offsets, vector<LONGINT> &lengths);
+void lz_refs(LONGINT bytenum, const unsigned char * filecontents, vector<LONGINT> &offsets, vector<LONGINT> &lengths);
 void lz_factorise_file(const char* filename, vector<LONGINT> &offsets, vector<LONGINT> &lengths);

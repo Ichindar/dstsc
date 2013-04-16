@@ -80,7 +80,11 @@ Employs a Suffix Array to produce a LZ factorisation of a byte stream. This impl
 
 The _lz_factorise_file_ procedure can be used generate two vector arrays containing the lz factorisation of the contents of a file. An [example](lzOG/src/main.cpp) of how to use this function has also been provided.
 
-The _lz_factorise_ procedure can be used to generate two vector arrays containg the lz factorisation of unsigned char array. An [example](lzOG/src/main2.cpp) illustrating how to use this functon has been provided.
+The _lz_factorise_ procedure can be used to generate two vector arrays containg the lz factorisation of an unsigned char array. An [example](lzOG/src/main2.cpp) illustrating how to use this functon has been provided.
+
+The _lz_refs_ procedure can be used to generate two vector arrays containg the lz factorisation of an unsigned char array. This is similar to the _lz_factorise_ procedure except it returns only the reference factors. For example, when parsing "ABCAB", the _lz_factorise_ procedure will return:
+
+    (0, 2)
 
 A [sample make file](lzOG/Makefile) has been provided showing the necessary compilation and linkage options required. 
 
