@@ -17,17 +17,15 @@ using namespace std;
 
 int main(int argc, const char **argv)
 {
-
-
    LONGINT *suftab;
    vector<LONGINT> offsets; // Store the factor offsets
    vector<LONGINT> lengths; // Store the length offsets
 
-   char* name = "123451234512345";
+   const char* name = "123451234512345";
 
-   lz_factorise(16, name, offsets, lengths);
+   lz_factorise(16, (unsigned char *) name, offsets, lengths);
    
-   for(int i = 0; i < offsets.size() - 1; i++) // Print the lz factors
+   for(int i = 0; i < offsets.size(); i++) // Print the lz factors
        if (lengths[i] != 0)
 	   cout << "(" << offsets[i] << "," << lengths[i] << ")" << endl;
        else  // when length is zero we are storing a char instead of an offset

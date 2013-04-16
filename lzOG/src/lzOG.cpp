@@ -137,8 +137,10 @@ void lz_factorise(LONGINT bytenum, const unsigned char * filecontents, vector<LO
 }
 
 void lz_refs(LONGINT bytenum, const unsigned char * filecontents, vector<LONGINT> &offsets, vector<LONGINT> &lengths)
-{ // procedure accepts suffix array of byte array 'contents' of size 'bytenum'
-  // returns only reference lz factors
+{
+/* procedure accepts suffix array of byte array 'contents' of size 'bytenum'
+   returns only reference lz factors
+*/
 
   // Step 1: Compute Suffix Array
 
@@ -180,8 +182,6 @@ void lz_refs(LONGINT bytenum, const unsigned char * filecontents, vector<LONGINT
   // Step 4: Perform LZ factorisation using LPS and Previous Occurances
 
   LONGINT i = 1;
-
-  offsets.push_back(filecontents[0]); lengths.push_back(0); // adding first byte
   
   while(i < bytenum)
       {
