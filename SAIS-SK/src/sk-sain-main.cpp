@@ -14,7 +14,7 @@
   ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
   OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-  Additional credits: 
+  History: 
   -- Angelos Molfetas (2013) Added explicit type casting for void 
      pointers so code compiles with C++ compilier.
 */
